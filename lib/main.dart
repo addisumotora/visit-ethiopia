@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:visit_ethiopia/screens/onboarding_screen.dart';
 import 'package:visit_ethiopia/screens/splash_screen.dart';
 
 void main() {
@@ -41,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SplashScreen()
+      body: OnboardingScreen()
     );
   }
 }

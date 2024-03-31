@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingScreen extends StatefulWidget {
   static MaterialPage page() {
@@ -24,12 +24,40 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(child: buildPages()),
-            // buildIndicator(),
-            buildActionButtons(),
-          ],
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/svg/travel1.png'),
+                fit: BoxFit.fill),
+          ),
+          child: Stack(
+            children: [
+              const Align(
+                  alignment: Alignment.topLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'lets go',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        "Let's explore ethiopia",
+                        style: TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold),
+                      )
+                    ],
+                  )),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: buildActionButtons(),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -40,60 +68,19 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         MaterialButton(
-          child: const Text('Explore'),
+          mouseCursor: MaterialStateMouseCursor.clickable,
+          elevation: 0,
+          padding: const EdgeInsets.all(12),
+          minWidth: 200,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+          color: const Color.fromARGB(66, 85, 85, 85),
           onPressed: () {
             // Provider.of<AppStateManager>(context, listen: false).completeOnBoarding();
           },
+          child: const Text('Explore'),
         ),
       ],
     );
   }
-
-  Widget buildPages() {
-    return PageView(
-      controller: controller,
-      children: [
-        onboardPageView(
-          const AssetImage('assets/recommend.png'),
-          '''Check out weekly recommended recipes and what your friends are cooking!'''), 
-        onboardPageView(const AssetImage('assets/sheet.png'),
-            'Cook with step by step instructions!'),
-        onboardPageView(const AssetImage('assets/list.png'),
-            'Keep track of what you need to buy'),
-      ],
-    );
-  }
-
-  Widget onboardPageView(ImageProvider imageProvider, String text) {
-    return Padding(
-      padding: const EdgeInsets.all(40),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            child: Image(
-              fit: BoxFit.fitWidth,
-              image: imageProvider,
-            ),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            text,
-            style: const TextStyle(fontSize: 20),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 16),
-        ],
-      ),
-    );
-  }
-
-  // Widget buildIndicator() {
-  //   return SmoothPageIndicator(
-  //     // controller: controller,
-  //     // count: 3,
-  //     // effect: WormEffect(activeDotColor: rwColor),
-  //   );
-  // }
 }
