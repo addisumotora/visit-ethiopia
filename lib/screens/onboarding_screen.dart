@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -28,7 +29,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           padding: const EdgeInsets.all(16),
           decoration: const BoxDecoration(
             image: DecorationImage(
-                image: AssetImage('assets/svg/travel1.png'),
+                image: AssetImage('assets/tour_sites/tv2.png'),
                 fit: BoxFit.fill),
           ),
           child: Stack(
@@ -40,15 +41,15 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     children: [
                       Text(
                         'lets go',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 10),
                       Text(
                         "Let's explore ethiopia",
                         style: TextStyle(
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold),
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       )
                     ],
                   )),
@@ -74,11 +75,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           minWidth: 200,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-          color: const Color.fromARGB(66, 85, 85, 85),
+          color: Colors.red,
           onPressed: () {
             // Provider.of<AppStateManager>(context, listen: false).completeOnBoarding();
           },
-          child: const Text('Explore'),
+          child: AnimatedTextKit(
+            animatedTexts: [
+              WavyAnimatedText('Explore',
+                  textStyle:
+                      const TextStyle(color: Colors.white, fontSize: 20.0)),
+            ],
+          ),
         ),
       ],
     );
